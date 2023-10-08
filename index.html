@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <form>
+    <label for="temperature">Enter Temperature:</label>
+    <input type="text" id="temperature" placeholder="Enter temperature">
+    <select id="unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    <button type="button" onclick="convertTemperature()">Convert</button>
+  </form>
+  <p id="result"></p>
+  
+  <script>
+    function convertTemperature() {
+      const temperatureInput = document.getElementById('temperature').value;
+      const unit = document.getElementById('unit').value;
+      const resultElement = document.getElementById('result');
+      
+      if (unit === 'celsius') {
+        const celsius = parseFloat(temperatureInput);
+        if (!isNaN(celsius)) {
+          const fahrenheit = (celsius * 9/5) + 32;
+          resultElement.textContent = `${celsius} Celsius is ${fahrenheit.toFixed(2)} Fahrenheit.`;
+        } else {
+          resultElement.textContent = 'Please enter a valid number for temperature.';
+        }
+      } else if (unit === 'fahrenheit') {
+        const fahrenheit = parseFloat(temperatureInput);
+        if (!isNaN(fahrenheit)) {
+          const celsius = (fahrenheit - 32) * 5/9;
+          resultElement.textContent = `${fahrenheit} Fahrenheit is ${celsius.toFixed(2)} Celsius.`;
+        } else {
+          resultElement.textContent = 'Please enter a valid number for temperature.';
+        }
+      }
+    }
+  </script>
+</body>
+</html>
