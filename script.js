@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Temperature Converter</title>
-</head>
-<body>
-  <h1>Temperature Converter</h1>
-  <label for="celsius">Celsius:</label>
-  <input type="number" id="celsius" placeholder="Enter Celsius">
-  <br>
-  <label for="fahrenheit">Fahrenheit:</label>
-  <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit">
-  <br>
-  <button onclick="convertTemperature()">Convert</button>
-  <p id="result"></p>
+document.getElementById('convert').onclick = tempConvert;
+document.getElementById('clear').onclick = clearForm;
+
+function tempConvert() {
+    
+    var fahrenheit = document.getElementById("fahrenheit").value;
+    var celsius = document.getElementById("celsius").value;
   
-  <script>
-    function convertTemperature() {
-      const celsiusInput = document.getElementById('celsius').value;
-      const fahrenheitInput = document.getElementById('fahrenheit').value;
-      const resultElement = document.getElementById('result');
-      
-      if (celsiusInput !== "") {
-        const celsiusValue = parseFloat(celsiusInput);
-        const convertedFahrenheit = (celsiusValue * 9/5) + 32;
-        resultElement.innerHTML = `${celsiusValue} Celsius is ${convertedFahrenheit.toFixed(2)} Fahrenheit.`;
-      } else if (fahrenheitInput !== "") {
-        const fahrenheitValue = parseFloat(fahrenheitInput);
-        const convertedCelsius = (fahrenheitValue - 32) * 5/9;
-        resultElement.innerHTML = `${fahrenheitValue} Fahrenheit is ${convertedCelsius.toFixed(2)} Celsius.`;
-      } else {
-        resultElement.innerHTML = "Please enter a temperature value.";
-      }
+  if (fahrenheit != '') {
+        celsius = (parseFloat(fahrenheit) - 32) / 1.8;
+    } else {
+        fahrenheit = (parseFloat(celsius) * 1.8) + 32;
     }
-  </script>
-</body>
-</html>
+  
+
+
+    document.getElementById('fahrenheit').value = parseFloat(fahrenheit).toFixed(1);
+    document.getElementById('celsius').value = parseFloat(celsius).toFixed(1);
+}
+
+
+function clearForm() {
+    document.getElementById('fahrenheit').value = '';
+    document.getElementById('celsius').value = '';
+}
